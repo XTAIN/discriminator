@@ -1,5 +1,6 @@
 {
   "name": "xtain/type-relation-discriminator",
+  "license": "MIT",
   "type": "package",
   "description": "Type relation discriminator",
   "authors": [
