@@ -1,16 +1,16 @@
 <?php
-/**
- * @author Maximilian Ruta <mr@xtain.net>
- */
 
-namespace XTAIN\Type\RelationDiscriminator;
+namespace XTAIN\RelationDiscriminator;
 
 interface RelationInterface
 {
     /**
      * @return string
-     *
-     * @author Maximilian Ruta <mr@xtain.net>
      */
     public static function getTarget();
+
+    /**
+     * @return string
+     */
+    public static function getType();
 }
