@@ -1,8 +1,8 @@
 {
-  "name": "xtain/type-relation-discriminator",
+  "name": "xtain/relation-discriminator",
   "license": "MIT",
   "type": "package",
-  "description": "Type relation discriminator",
+  "description": "Relation discriminator",
   "authors": [
     {
       "name": "Maximilian Ruta",
@@ -10,12 +10,11 @@
     }
   ],
   "require": {
-    "php": ">=5.3.3",
-    "xtain/type-registry": "dev-master"
+    "php": ">=5.3.3"
   },
   "suggest": {},
   "autoload": {
-    "psr-4": { "XTAIN\\Type\\RelationDiscriminator\\": "src/" }
+    "psr-4": { "XTAIN\\RelationDiscriminator\\": "src/" }
   },
   "minimum-stability": "dev",
   "extra": {
