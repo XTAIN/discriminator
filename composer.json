@@ -1,7 +1,7 @@
 {
-  "name": "xtain/type-discriminator",
+  "name": "xtain/type-relation-discriminator",
   "type": "package",
-  "description": "Type discriminator",
+  "description": "Type relation discriminator",
   "authors": [
     {
       "name": "Maximilian Ruta",
@@ -9,11 +9,12 @@
     }
   ],
   "require": {
-    "php": ">=5.3.3"
+    "php": ">=5.3.3",
+    "xtain/type-registry": "dev-master"
   },
   "suggest": {},
   "autoload": {
-    "psr-4": { "XTAIN\\Type\\Discriminator\\": "src/" }
+    "psr-4": { "XTAIN\\Type\\RelationDiscriminator\\": "src/" }
   },
   "minimum-stability": "dev",
   "extra": {
