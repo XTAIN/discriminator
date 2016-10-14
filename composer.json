@@ -1,0 +1,24 @@
+{
+  "name": "xtain/type-discriminator",
+  "type": "package",
+  "description": "Type discriminator",
+  "authors": [
+    {
+      "name": "Maximilian Ruta",
+      "email": "mr@xtain.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "suggest": {},
+  "autoload": {
+    "psr-4": { "XTAIN\\Type\\Discriminator\\": "src/" }
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
