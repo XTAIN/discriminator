@@ -2,7 +2,6 @@
 
 namespace XTAIN\RelationDiscriminator\Doctrine;
 
-use Doctrine\Common\Annotations\Annotation;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use XTAIN\RelationDiscriminator\MapRegistryInterface;
 
