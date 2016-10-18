@@ -10,18 +10,18 @@ interface MapInterface
     public static function getParent();
 
     /**
-     * @param string|object $item
+     * @param string|object $relation
      *
      * @return bool
      */
-    public static function isValidRelation($item);
+    public static function isValidRelation($relation);
 
     /**
-     * @param string|object $item
+     * @param string|object $relation
      *
      * @return bool
      */
-    public function hasRelation($item);
+    public function hasRelation($relation);
 
     /**
      * @return \string[]
@@ -60,11 +60,11 @@ interface MapInterface
     public function getMetadataByType($type);
 
     /**
-     * @param string|object $item
+     * @param string|object $relation
      *
      * @return MetadataInterface
      */
-    public function getMetadataByItem($item);
+    public function getMetadataByRelation($relation);
 
     /**
      * @param string|object $target
@@ -74,11 +74,16 @@ interface MapInterface
     public function getMetadataByTarget($target);
 
     /**
-     * @param string|object $item
+     * @return string[]
+     */
+    public function getDiscriminatorMap();
+
+    /**
+     * @param string|object $target
      *
      * @return string
      */
-    public function getTarget($item);
+    public function getTarget($target);
 
     /**
      * @param string|object $target

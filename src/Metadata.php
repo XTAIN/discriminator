@@ -28,7 +28,7 @@ class Metadata implements MetadataInterface
      */
     public function getType()
     {
-        return call_user_func($this->relation, 'getType');
+        return call_user_func(array($this->relation, 'getType'));
     }
 
     /**
@@ -44,6 +44,6 @@ class Metadata implements MetadataInterface
      */
     public function getTarget()
     {
-        return call_user_func($this->relation, 'getTarget');
+        return call_user_func(array($this->relation, 'getTarget'));
     }
 }

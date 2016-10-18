@@ -17,28 +17,41 @@ trait MapTrait
         $this->collection = new Collection();
     }
 
-    /**
-     * @param string|object $item
-     *
-     * @return bool
-     */
-    public static function isValidRelation($item)
+    protected static function isInstanceOf($object, $className)
     {
-        return is_subclass_of($item, static::getParent());
+        if (is_object($object)) {
+            $object = get_class($object);
+        }
+
+        if (is_object($className)) {
+            $className = get_class($className);
+        }
+
+        return $object === $className || is_subclass_of($object, $className);
     }
 
     /**
-     * @param string|object $item
+     * @param string|object $relation
      *
      * @return bool
      */
-    public function hasRelation($item)
+    public static function isValidRelation($relation)
     {
-        if (is_object($item)) {
-            $item = get_class($item);
+        return self::isInstanceOf($relation, static::getParent());
+    }
+
+    /**
+     * @param string|object $relation
+     *
+     * @return bool
+     */
+    public function hasRelation($relation)
+    {
+        if (is_object($relation)) {
+            $relation = get_class($relation);
         }
 
-        return $this->collection->has($item);
+        return $this->collection->has($relation);
     }
 
     /**
@@ -48,7 +61,6 @@ trait MapTrait
     {
         return $this->collection->items();
     }
-
 
     /**
      * @param string|array $items
@@ -97,7 +109,7 @@ trait MapTrait
         }
 
         foreach ($this->getMetadatas() as $metadata) {
-            if (is_subclass_of($target, $metadata->getTarget())) {
+            if (self::isInstanceOf($target, $metadata->getTarget())) {
                 return true;
             }
         }
@@ -141,24 +153,24 @@ trait MapTrait
     }
 
     /**
-     * @param string|object $item
+     * @param string|object $relation
      *
      * @return MetadataInterface
      */
-    public function getMetadataByItem($item)
+    public function getMetadataByRelation($relation)
     {
-        if (is_object($item)) {
-            $item = get_class($item);
+        if (is_object($relation)) {
+            $relation = get_class($relation);
         }
 
-        if (!$this->isValidRelation($item)) {
+        if (!$this->isValidRelation($relation)) {
             throw new \InvalidArgumentException(sprintf(
                 "Object of type %s is not supported",
-                $item
+                $relation
             ));
         }
 
-        return MetadataFactory::create($item);
+        return MetadataFactory::create($relation);
     }
 
     /**
@@ -173,7 +185,7 @@ trait MapTrait
         }
 
         foreach ($this->getMetadatas() as $metadata) {
-            if (is_subclass_of($target, $metadata->getTarget())) {
+            if (self::isInstanceOf($target, $metadata->getTarget())) {
                 return $metadata;
             }
         }
@@ -185,13 +197,27 @@ trait MapTrait
     }
 
     /**
-     * @param string|object $item
+     * @return string[]
+     */
+    public function getDiscriminatorMap()
+    {
+        $map = array();
+
+        foreach ($this->getMetadatas() as $metadata) {
+            $map[$metadata->getType()] = $metadata->getRelation();
+        }
+
+        return $map;
+    }
+
+    /**
+     * @param string|object $target
      *
      * @return string
      */
-    public function getTarget($item)
+    public function getTarget($target)
     {
-        return $this->getMetadataByItem($item)->getTarget();
+        return $this->getMetadataByRelation($target)->getTarget();
     }
 
     /**
