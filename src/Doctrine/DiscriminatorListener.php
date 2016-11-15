@@ -13,11 +13,6 @@ class DiscriminatorListener
     protected $mapRegistry;
 
     /**
-     * @var array
-     */
-    protected $discriminatorMaps = array();
-
-    /**
      * DiscriminatorListener constructor.
      *
      * @param MapRegistryInterface $mapRegistry
@@ -45,14 +40,6 @@ class DiscriminatorListener
             return;
         }
 
-        $this->discriminatorMaps[$class] = array();
-        foreach ($driver->getAllClassNames() as $name) {
-            if ($registry->hasRelation($name)) {
-                $relation = $registry->getMetadataByRelation($name);
-                $this->discriminatorMaps[$class][$relation->getType()] = $name;
-            }
-        }
-
-        $event->getClassMetadata()->discriminatorMap = $this->discriminatorMaps[$class];
+        $event->getClassMetadata()->discriminatorMap = $registry->getDiscriminatorMap();
     }
 }
