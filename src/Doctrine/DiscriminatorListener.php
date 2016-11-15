@@ -32,8 +32,6 @@ class DiscriminatorListener
         }
 
         $class = $classMetadata->getName();
-        $driver = $event->getEntityManager()->getConfiguration()->getMetadataDriverImpl();
-
         $registry = $this->mapRegistry->findMapByParent($class);
 
         if (!$registry) {
