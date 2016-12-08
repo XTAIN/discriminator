@@ -38,6 +38,6 @@ class DiscriminatorListener
             return;
         }
 
-        $event->getClassMetadata()->discriminatorMap = $registry->getDiscriminatorMap();
+        $event->getClassMetadata()->setDiscriminatorMap($registry->getDiscriminatorMap());
     }
 }
