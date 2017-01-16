@@ -27,7 +27,7 @@ trait MapTrait
             $className = get_class($className);
         }
 
-        return $object === $className || is_subclass_of($object, $className);
+        return strcasecmp($object, $className) === 0 || is_subclass_of($object, $className);
     }
 
     /**
