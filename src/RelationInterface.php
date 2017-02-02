@@ -2,15 +2,10 @@
 
 namespace XTAIN\RelationDiscriminator;
 
-interface RelationInterface
+interface RelationInterface extends SimpleRelationInterface
 {
     /**
      * @return string
      */
     public static function getTarget();
-
-    /**
-     * @return string
-     */
-    public static function getType();
 }

@@ -7,7 +7,7 @@ class MetadataFactory
     /**
      * @param string $relation
      *
-     * @return Metadata
+     * @return Metadata|SimpleMetadata
      */
     public static function create($relation)
     {
@@ -21,6 +21,10 @@ class MetadataFactory
             return $instances[$relation];
         }
 
-        return $instances[$relation] = new Metadata($relation);
+        if (is_a($relation, SimpleRelationInterface::class, true) && !is_a($relation, RelationInterface::class, true)) {
+            return $instances[$relation] = new SimpleMetadata($relation);
+        } else {
+            return $instances[$relation] = new Metadata($relation);
+        }
     }
 }

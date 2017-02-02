@@ -2,18 +2,8 @@
 
 namespace XTAIN\RelationDiscriminator;
 
-interface MetadataInterface
+interface MetadataInterface extends SimpleMetadataInterface
 {
-    /**
-     * @return string
-     */
-    public function getType();
-
-    /**
-     * @return string
-     */
-    public function getRelation();
-
     /**
      * @return string
      */

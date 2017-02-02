@@ -5,14 +5,14 @@ namespace XTAIN\RelationDiscriminator;
 class MapRegistry implements MapRegistryInterface
 {
     /**
-     * @var MapInterface[]
+     * @var SimpleMapInterface[]
      */
     protected $relationMaps;
 
     /**
      * DiscriminatorListener constructor.
      *
-     * @param MapInterface[] $relationMaps
+     * @param SimpleMapInterface[] $relationMaps
      */
     public function __construct(array $relationMaps)
     {
@@ -22,12 +22,28 @@ class MapRegistry implements MapRegistryInterface
     /**
      * @param string $class
      *
-     * @return null|MapInterface
+     * @return null|SimpleMapInterface
      */
     public function findMapByParent($class)
     {
         foreach ($this->relationMaps as $relationMap) {
             if ($relationMap->getParent() == $class) {
+                return $relationMap;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return null|SimpleMapInterface
+     */
+    public function findMapByParentOrChild($class)
+    {
+        foreach ($this->relationMaps as $relationMap) {
+            if (is_a($class, $relationMap->getParent(), true)) {
                 return $relationMap;
             }
         }

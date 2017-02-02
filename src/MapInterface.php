@@ -2,56 +2,8 @@
 
 namespace XTAIN\RelationDiscriminator;
 
-interface MapInterface
+interface MapInterface extends SimpleMapInterface
 {
-    /**
-     * @return string
-     */
-    public static function getParent();
-
-    /**
-     * @param string|object $relation
-     *
-     * @return bool
-     */
-    public static function isValidRelation($relation);
-
-    /**
-     * @param string|object $relation
-     *
-     * @return bool
-     */
-    public function hasRelation($relation);
-
-    /**
-     * @return \string[]
-     */
-    public function getRelations();
-
-    /**
-     * @param string|array $items
-     */
-    public function register($items);
-
-    /**
-     * @return MetadataInterface[]
-     */
-    public function getMetadatas();
-
-    /**
-     * @param string|object $target
-     *
-     * @return bool
-     */
-    public function hasTarget($target);
-
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
-    public function hasType($type);
-
     /**
      * @param string $type
      *
@@ -67,16 +19,16 @@ interface MapInterface
     public function getMetadataByRelation($relation);
 
     /**
-     * @param string|object $target
-     *
-     * @return MetadataInterface
+     * @return MetadataInterface[]
      */
-    public function getMetadataByTarget($target);
+    public function getMetadatas();
 
     /**
-     * @return string[]
+     * @param string $type
+     *
+     * @return string
      */
-    public function getDiscriminatorMap();
+    public function getTargetByType($type);
 
     /**
      * @param string|object $target
@@ -93,16 +45,17 @@ interface MapInterface
     public function getRelation($target);
 
     /**
-     * @param string $type
+     * @param string|object $target
      *
-     * @return string
+     * @return MetadataInterface
      */
-    public function getRelationByType($type);
+    public function getMetadataByTarget($target);
 
     /**
-     * @param string $type
+     * @param string|object $target
      *
-     * @return string
+     * @return bool
      */
-    public function getTargetByType($type);
+    public function hasTarget($target);
+
 }
